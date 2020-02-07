@@ -863,7 +863,7 @@ def get_client(**kwargs):
             kwargs['aws_key'] = credentials.access_key
             kwargs['aws_secret_key'] = credentials.secret_key
             kwargs['aws_token'] = credentials.token
-        # If an attribute doesn't exist, we were not able to retrieve credentials 
+        # If an attribute doesn't exist, we were not able to retrieve credentials
         # as expected so we can't continue
         except AttributeError:
             logger.debug('Unable to locate AWS credentials')
@@ -1615,7 +1615,7 @@ def relocate_check(client, index):
     :arg client: An :class:`elasticsearch.Elasticsearch` client object
     :arg index: The index to check the index shards state.
     """
-    shard_state_data = client.cluster.state(index=index)['routing_table']['indices'][index]['shards']
+    shard_state_data = client.cluster.state(index=index, metric='routing_table')['routing_table']['indices'][index]['shards']
 
     finished_state = all(all(shard['state']=="STARTED" for shard in shards) for shards in shard_state_data.values())
     if finished_state:

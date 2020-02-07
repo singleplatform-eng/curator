@@ -2213,7 +2213,7 @@ class Shrink(object):
             self.__log_action(error_msg, dry_run)
 
     def _check_all_shards(self, idx):
-        shards = self.client.cluster.state(index=idx)['routing_table']['indices'][idx]['shards']
+        shards = self.client.cluster.state(index=idx, metric='routing_table')['routing_table']['indices'][idx]['shards']
         found = []
         for shardnum in shards:
             for shard_idx in range(0, len(shards[shardnum])):
