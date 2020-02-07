@@ -33,3 +33,4 @@ test/.DS_Store
 vcruntime140.dll
 wheelhouse
 windows
+.python-version
